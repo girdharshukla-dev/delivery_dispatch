@@ -1,6 +1,6 @@
 package com.girdharshukla.deliverymatch.models;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -30,14 +30,14 @@ public class Order {
     private double longitude;
     
     @Column(name = "h3_cell")
-    private String h3Cell;
+    private Long h3Cell;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private Status status;
+    private Status status = Status.PENDING;
     
     @Column(name = "created_at")
-    private Timestamp createdAt;
+    private LocalDateTime createdAt;
 
     public UUID getId() {
         return id;
@@ -63,11 +63,11 @@ public class Order {
         this.longitude = longitude;
     }
 
-    public String getH3Cell() {
+    public Long getH3Cell() {
         return h3Cell;
     }
 
-    public void setH3Cell(String h3Cell) {
+    public void setH3Cell(Long h3Cell) {
         this.h3Cell = h3Cell;
     }
 
@@ -79,11 +79,11 @@ public class Order {
         this.status = status;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

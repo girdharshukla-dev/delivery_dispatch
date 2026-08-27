@@ -31,7 +31,7 @@ public class Agent {
     private double longitude;
 
     @Column(name = "h3_cell")
-    private String h3Cell;
+    private Long h3Cell;
 
     @Column
     private int capacity;
@@ -41,9 +41,9 @@ public class Agent {
 
     @Enumerated(EnumType.STRING)
     @Column
-    private Status status;
+    private Status status = Status.IDLE;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", insertable = false)
     private LocalDateTime createdAt;
 
     public UUID getId() {
@@ -70,11 +70,11 @@ public class Agent {
         this.longitude = longitude;
     }
 
-    public String getH3Cell() {
+    public Long getH3Cell() {
         return h3Cell;
     }
 
-    public void setH3Cell(String h3Cell) {
+    public void setH3Cell(Long h3Cell) {
         this.h3Cell = h3Cell;
     }
 
