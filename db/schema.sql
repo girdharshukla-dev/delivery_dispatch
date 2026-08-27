@@ -1,5 +1,5 @@
 CREATE TABLE agents (
-    id              VARCHAR(64) PRIMARY KEY,
+    id              UUID PRIMARY KEY,
     latitude        DOUBLE PRECISION NOT NULL,
     longitude       DOUBLE PRECISION NOT NULL,
     h3_cell         VARCHAR(20) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE agents (
 );
 
 CREATE TABLE orders (
-    id          VARCHAR(64) PRIMARY KEY,
+    id          UUID PRIMARY KEY,
     latitude    DOUBLE PRECISION NOT NULL,
     longitude   DOUBLE PRECISION NOT NULL,
     h3_cell     VARCHAR(20) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE assignments (
-    id          VARCHAR(64) PRIMARY KEY,
+    id          UUID PRIMARY KEY,
     agent_id    VARCHAR(64) NOT NULL REFERENCES agents(id),
     order_id    VARCHAR(64) NOT NULL REFERENCES orders(id) UNIQUE,
     matched_at  TIMESTAMP NOT NULL DEFAULT now()
