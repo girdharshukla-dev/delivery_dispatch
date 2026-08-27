@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: delivery_matching
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+

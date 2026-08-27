@@ -4,3 +4,9 @@
 
 - POST /dispatch/run -> run the algorithm
 - GET /dispatch/candidate/{orderId} -> show the candidate pool
+
+```
+export DB_URL=jdbc:postgresql://localhost:5432/dispatch
+export DB_USERNAME=dispatch_user
+export DB_PASSWORD=dispatch_pass
+```
