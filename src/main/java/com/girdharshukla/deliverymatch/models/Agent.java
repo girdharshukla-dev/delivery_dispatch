@@ -43,7 +43,7 @@ public class Agent {
     @Column
     private Status status = Status.IDLE;
 
-    @Column(name = "created_at", insertable = false)
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     public UUID getId() {

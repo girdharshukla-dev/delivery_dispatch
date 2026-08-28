@@ -2,7 +2,6 @@ package com.girdharshukla.deliverymatch.controllers;
 
 import java.io.IOException;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ public class AgentController {
         this.agentService = agentService;
     }
 
-    public record AgentRequestDto(
+    public record AddAgentRequestDto(
         double latitude,
         double longitude,
         int capacity,
@@ -28,7 +27,7 @@ public class AgentController {
     ){}
 
     @PostMapping("/add")
-    public Agent agent(@RequestBody AgentRequestDto agentDto) throws IOException{
+    public Agent addAgent(@RequestBody AddAgentRequestDto agentDto) throws IOException{
         return agentService.saveAgent(agentDto);
     }
 
