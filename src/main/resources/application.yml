@@ -9,4 +9,5 @@ spring:
 
 h3:
   resolution: 9
+  k: 1
 

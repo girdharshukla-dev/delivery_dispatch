@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class GreedyMatchingEngine implements MatchingEngine {
 
     @Override
-    public List<Candidate> matching(List<Candidate> candidates) {
+    public List<Candidate> match(List<Candidate> candidates) {
         candidates.sort(Comparator.comparingDouble(Candidate::distanceKm));
 
         List<Candidate> result = new ArrayList<>();

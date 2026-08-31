@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "orders")
 public class Order {
 
-    private enum Status{
+    public enum Status{
         PENDING,
         MATCHED
     };

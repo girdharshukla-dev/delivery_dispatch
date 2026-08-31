@@ -16,7 +16,7 @@ public class AgentController {
     private final AgentService agentService;
 
     public AgentController(AgentService agentService){
-        this.agentService = agentService;
+        this .agentService = agentService;
     }
 
     public record AddAgentRequestDto(

@@ -9,6 +9,6 @@ import com.girdharshukla.deliverymatch.models.Order;
 public interface MatchingEngine {
     public record Candidate(Agent agent, Order order, double distanceKm){}
     
-    List<Candidate> matching(List<Candidate> candidates);
+    List<Candidate> match(List<Candidate> candidates);
 
 }
