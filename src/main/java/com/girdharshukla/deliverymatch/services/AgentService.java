@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.girdharshukla.deliverymatch.controllers.AgentController.AddAgentRequestDto;
@@ -16,6 +17,8 @@ public class AgentService {
     
     private final AgentRepository agentRepository;
     private final H3Core h3Core;
+
+    @Value("${h3.resolution}") int resolution;
 
     public AgentService(AgentRepository agentRepository, H3Core h3Core){
         this.agentRepository = agentRepository;
@@ -31,10 +34,11 @@ public class AgentService {
         agent.setLongitude(agentDto.longitude());
         agent.setCapacity(agentDto.capacity());
         agent.setCurrentLoad(agentDto.currentLoad());
-        agent.setH3Cell(h3Core.latLngToCell(agentDto.latitude(), agentDto.longitude(), 3));
+        agent.setH3Cell(h3Core.latLngToCell(agentDto.latitude(), agentDto.longitude(), resolution));
         agent.setCreatedAt(LocalDateTime.now());
 
         return agentRepository.save(agent);
     }
 
 }
+

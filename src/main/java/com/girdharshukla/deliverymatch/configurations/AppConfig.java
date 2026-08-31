@@ -1,4 +1,4 @@
-package com.girdharshukla.deliverymatch.confugrations;
+package com.girdharshukla.deliverymatch.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
