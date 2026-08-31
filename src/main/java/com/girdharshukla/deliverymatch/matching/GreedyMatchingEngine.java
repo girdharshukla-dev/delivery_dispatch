@@ -23,13 +23,16 @@ public class GreedyMatchingEngine implements MatchingEngine {
         Set<UUID> matchedOrders = new HashSet<>();
         Map<UUID, Integer> currentLoad = new HashMap<>();
 
-        for(Candidate candidate: candidates){
+        for (Candidate candidate : candidates) {
             UUID orderId = candidate.order().getId();
             UUID agentId = candidate.agent().getId();
 
-            if(matchedOrders.contains(orderId)) continue;
+            if (matchedOrders.contains(orderId))
+                continue;
 
-            if(candidate.agent().getCurrentLoad() == candidate.agent().getCapacity()) continue;
+            if (candidate.agent().getCurrentLoad() + currentLoad.getOrDefault(agentId, 0) == candidate.agent()
+                    .getCapacity())
+                continue;
 
             matchedOrders.add(orderId);
             currentLoad.merge(agentId, 1, Integer::sum);
@@ -38,5 +41,5 @@ public class GreedyMatchingEngine implements MatchingEngine {
 
         return result;
     }
-    
+
 }
