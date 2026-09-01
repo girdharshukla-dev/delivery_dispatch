@@ -21,7 +21,7 @@ public class GreedyMatchingEngine implements MatchingEngine {
         List<Candidate> result = new ArrayList<>();
 
         Set<UUID> matchedOrders = new HashSet<>();
-        Map<UUID, Integer> currentLoad = new HashMap<>();
+        Map<UUID, Integer> currentLoad = new HashMap<>(); // -- agentId -> currentLoad
 
         for (Candidate candidate : candidates) {
             UUID orderId = candidate.order().getId();
