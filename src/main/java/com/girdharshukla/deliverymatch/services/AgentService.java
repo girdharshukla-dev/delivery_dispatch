@@ -36,7 +36,7 @@ public class AgentService {
         agent.setCurrentLoad(agentDto.currentLoad());
         if(agent.getCurrentLoad() >= agent.getCapacity()){
             agent.setStatus(Agent.Status.BUSY);
-        }
+        } 
         agent.setH3Cell(h3Core.latLngToCell(agentDto.latitude(), agentDto.longitude(), resolution));
         agent.setCreatedAt(LocalDateTime.now());
 

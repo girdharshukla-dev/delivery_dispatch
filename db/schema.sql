@@ -9,8 +9,16 @@ CREATE TABLE agents (
     created_at      TIMESTAMP NOT NULL DEFAULT now()
 );
 
+CREATE TABLE users (
+    id          UUID PRIMARY KEY,
+    email       VARCHAR(100),
+    password    VARCHAR(100),
+    created_at  TIMESTAMP NOT NULL DEFAULT now()
+);
+
 CREATE TABLE orders (
     id          UUID PRIMARY KEY,
+    user_id     UUID NOT NULL REFERENCES users(id),
     latitude    DOUBLE PRECISION NOT NULL,
     longitude   DOUBLE PRECISION NOT NULL,
     h3_cell     BIGINT NOT NULL,
@@ -21,9 +29,10 @@ CREATE TABLE orders (
 CREATE TABLE assignments (
     id          UUID PRIMARY KEY,
     agent_id    UUID NOT NULL REFERENCES agents(id),
-    order_id    UUID NOT NULL REFERENCES orders(id) UNIQUE,
+    order_id    UUID NOT NULL REFERENCES orders(id), -- this is not made unique to supposrt cancellations and reassignments
     matched_at  TIMESTAMP NOT NULL DEFAULT now()
 );
+
 
 
 
