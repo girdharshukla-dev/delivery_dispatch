@@ -1,7 +1,7 @@
 
 CREATE TABLE users (
     id          UUID PRIMARY KEY,
-    email       VARCHAR(100),
+    email       VARCHAR(100) UNIQUE,
     password    VARCHAR(100),
     role        VARCHAR(10) NOT NULL DEFAULT 'USER' CHECK (role IN ('USER', 'AGENT', 'ADMIN')),
     created_at  TIMESTAMP NOT NULL DEFAULT now()
@@ -10,7 +10,7 @@ CREATE TABLE users (
 
 CREATE TABLE agents (
     id              UUID PRIMARY KEY,
-    user_id     UUID NOT NULL REFERENCES users(id),
+    user_id         UUID NOT NULL REFERENCES users(id),
     latitude        DOUBLE PRECISION NOT NULL,
     longitude       DOUBLE PRECISION NOT NULL,
     h3_cell         BIGINT NOT NULL,
