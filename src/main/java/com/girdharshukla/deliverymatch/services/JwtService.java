@@ -2,8 +2,6 @@ package com.girdharshukla.deliverymatch.services;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.crypto.SecretKey;
 
@@ -21,7 +19,6 @@ public class JwtService {
     private String secretKey;
 
     public String generateToken(String username) {
-        Map<String, Object> claims = new HashMap<>();
 
         return Jwts.builder()
                 .claims()

@@ -5,12 +5,20 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
 public class User {
+
+  public enum Role {
+    USER,
+    AGENT,
+    ADMIN
+  };
 
   @Id
   @Column
@@ -22,14 +30,18 @@ public class User {
   @Column
   private String password;
 
+  @Enumerated(EnumType.STRING)
+  @Column
+  private Role role;
+
   @Column
   private LocalDateTime createdAt;
 
-  public void setId(UUID id){
+  public void setId(UUID id) {
     this.id = id;
   }
 
-  public UUID getId(){
+  public UUID getId() {
     return this.id;
   }
 
@@ -55,6 +67,14 @@ public class User {
 
   public LocalDateTime getCreatedAt() {
     return this.createdAt;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
+
+  public Role getRole() {
+    return this.role;
   }
 
 }
