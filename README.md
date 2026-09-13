@@ -5,6 +5,7 @@
 - POST /dispatch/run -> run the algorithm
 - GET /dispatch/candidate/{orderId} -> show the candidate pool
 
+The following are just an example ... change them in prod:
 ```
 export DB_URL=jdbc:postgresql://localhost:5432/dispatch
 export DB_USERNAME=dispatch_user
