@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.girdharshukla.deliverymatch.controllers.UserController.UserDto;
 import com.girdharshukla.deliverymatch.models.User;
+import com.girdharshukla.deliverymatch.models.User.Role;
 import com.girdharshukla.deliverymatch.repositories.UserRepository;
 
 @Service
@@ -27,6 +28,7 @@ public class UserService {
         user.setId(UUID.randomUUID());
         user.setEmail(userDto.email());
         user.setPassword(passwordEncoder.encode(userDto.password()));
+        user.setRole(Role.valueOf(userDto.role()));
         user.setCreatedAt(LocalDateTime.now());
 
         return userRepository.save(user);

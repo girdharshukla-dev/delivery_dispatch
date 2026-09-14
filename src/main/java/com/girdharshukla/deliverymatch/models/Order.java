@@ -54,6 +54,14 @@ public class Order {
         this.id = id;
     }
 
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public User getUser(){
+        return this.user;
+    }
+
     public double getLatitude() {
         return latitude;
     }

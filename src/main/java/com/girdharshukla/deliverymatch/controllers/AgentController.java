@@ -2,6 +2,7 @@ package com.girdharshukla.deliverymatch.controllers;
 
 import java.io.IOException;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class AgentController {
     ){}
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('AGENT')")
     public Agent addAgent(@RequestBody AddAgentRequestDto agentDto) throws IOException{
         return agentService.saveAgent(agentDto);
     }

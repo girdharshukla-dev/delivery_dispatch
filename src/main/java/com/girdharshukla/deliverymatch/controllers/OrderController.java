@@ -1,5 +1,6 @@
 package com.girdharshukla.deliverymatch.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ public class OrderController{
         double latitude,
         double longitude
     ){}
+
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/add")
     public Order addOrder(@RequestBody AddOrderRequestDto orderDto){
         return orderService.saveOrder(orderDto);

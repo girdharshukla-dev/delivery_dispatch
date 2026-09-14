@@ -28,7 +28,7 @@ public class UserController {
         this.jwtService = jwtService;
     }
 
-    public record UserDto(String email, String password){}
+    public record UserDto(String email, String password, String role){}
 
     @PostMapping("/register")
     public User registerUser(@RequestBody UserDto userDto){
