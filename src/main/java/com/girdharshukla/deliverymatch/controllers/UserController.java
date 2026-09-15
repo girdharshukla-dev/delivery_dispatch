@@ -1,6 +1,5 @@
 package com.girdharshukla.deliverymatch.controllers;
 
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.girdharshukla.deliverymatch.models.User;
 import com.girdharshukla.deliverymatch.services.JwtService;
 import com.girdharshukla.deliverymatch.services.UserService;
 
@@ -33,19 +31,22 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody UserDto userDto) {
-        return userService.registerUser(userDto);
+    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
+        if (userDto.role().equals("ADMIN"))
+            return ResponseEntity.status(401).body("ADMIN registration not allowed");
+        return ResponseEntity.ok(userService.registerUser(userDto));
     }
 
-    public record UserLoginDto(String email, String password) {
+    public record UserLoginRequestDto(String email, String password) {
     }
 
     public record UserLoginResponseDto(String token) {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<?> loginUser(@RequestBody UserLoginRequestDto userLoginDto) {
         try {
+
             Authentication auth = authenticationManager
                     .authenticate(
                             new UsernamePasswordAuthenticationToken(userLoginDto.email(), userLoginDto.password()));

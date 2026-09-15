@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.girdharshukla.deliverymatch.models.Agent;
+import com.girdharshukla.deliverymatch.models.Agent.Status;
 import com.girdharshukla.deliverymatch.services.AgentService;
 
 @RestController
@@ -39,4 +39,27 @@ public class AgentController {
         }
     }
 
+    @PostMapping("/status")
+    @PreAuthorize("hasRole('AGENT')")
+    public ResponseEntity<?> updateStatus(@RequestBody String status){
+        if (agentService.updateStatus(Status.valueOf(status)) > 0){
+            return ResponseEntity.ok(status);
+        }else{
+            return ResponseEntity.status(400).body("Failed to update status");
+        }
+    }
+
+    public record UpdateLocReqDto(double latitude, double longitude) {}
+    @PostMapping("/location")
+    @PreAuthorize("hasRole('AGENT')")
+    public ResponseEntity<?> updateLocation(@RequestBody UpdateLocReqDto updateLocReqDto){
+        if (agentService.updateLocation(updateLocReqDto) > 0){
+            return ResponseEntity.ok(updateLocReqDto);
+        }else{
+            return ResponseEntity.status(400).body("Failed to update status");
+        }
+    }
+
 }
+
+
