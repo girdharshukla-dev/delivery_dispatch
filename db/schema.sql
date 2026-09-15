@@ -10,7 +10,7 @@ CREATE TABLE users (
 
 CREATE TABLE agents (
     id              UUID PRIMARY KEY,
-    user_id         UUID NOT NULL REFERENCES users(id),
+    user_id         UUID NOT NULL REFERENCES users(id) UNIQUE,
     latitude        DOUBLE PRECISION NOT NULL,
     longitude       DOUBLE PRECISION NOT NULL,
     h3_cell         BIGINT NOT NULL,

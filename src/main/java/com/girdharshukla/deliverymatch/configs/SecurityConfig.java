@@ -39,7 +39,6 @@ public class SecurityConfig {
                 req -> req.requestMatchers("/users/register", "/users/login").permitAll()
                         .anyRequest().authenticated());
         http.csrf(customizer -> customizer.disable());
-        http.httpBasic(Customizer.withDefaults());
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

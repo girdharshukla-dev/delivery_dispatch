@@ -36,6 +36,10 @@ public class AgentService {
 
         User user = userRepository.findByEmail(email);
 
+        if(agentRepository.findByUser(user).isPresent()){
+            throw new IllegalStateException("User already exists as an agent");
+        }
+
         Agent agent = new Agent();
         
         agent.setId(UUID.randomUUID());
