@@ -70,12 +70,14 @@ public class AgentService {
         return agentRepository.updateStatusById(user.getId(), status);
     }
 
-    public int updateLocation(UpdateLocReqDto updateLocReqDto) {
+    public int updateLocation(UpdateLocReqDto dto) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         User user = userPrincipal.getUser();
 
-        return agentRepository.updateLocationById(updateLocReqDto.latitude(), updateLocReqDto.longitude(),
+        long h3Cell = h3Core.latLngToCell(dto.latitude(), dto.longitude(), resolution);
+
+        return agentRepository.updateLocationById(dto.latitude(), dto.longitude(), h3Cell,
                 user.getId());
 
     }

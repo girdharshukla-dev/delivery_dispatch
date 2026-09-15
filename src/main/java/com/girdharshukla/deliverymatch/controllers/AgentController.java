@@ -39,10 +39,11 @@ public class AgentController {
         }
     }
 
+    public record UpdateStatusDto(String status) {}
     @PostMapping("/status")
     @PreAuthorize("hasRole('AGENT')")
-    public ResponseEntity<?> updateStatus(@RequestBody String status){
-        if (agentService.updateStatus(Status.valueOf(status)) > 0){
+    public ResponseEntity<?> updateStatus(@RequestBody UpdateStatusDto status){
+        if (agentService.updateStatus(Status.valueOf(status.status())) > 0){
             return ResponseEntity.ok(status);
         }else{
             return ResponseEntity.status(400).body("Failed to update status");
