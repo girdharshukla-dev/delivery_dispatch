@@ -93,4 +93,5 @@ Run a single test class:
 ```
 
 **Decisions:**
-- `@WebMvcTest` here runs with `@PreAuthorize` filters disabled, so it currently checks request/response shape rather than authorization itself — testing that `hasRole('AGENT')` is correctly enforced is a natural next addition.
+- `@WebMvcTest` here runs with `@PreAuthorize` filters disabled, so it currently checks request/response shape rather than authorization itself.
+
