@@ -92,7 +92,5 @@ Run a single test class:
 ./mvnw test -Dtest=AgentServiceTest
 ```
 
-**Deliberate scope decisions:**
-- Thin CRUD-style services (`OrderService`, `UserService`) are not exhaustively unit tested, since they contain little branching logic worth isolating.
+**Decisions:**
 - `@WebMvcTest` here runs with `@PreAuthorize` filters disabled, so it currently checks request/response shape rather than authorization itself — testing that `hasRole('AGENT')` is correctly enforced is a natural next addition.
-- No full `@SpringBootTest`/Testcontainers integration test yet — the layers above already catch most classes of bugs (algorithm errors, business-rule errors, HTTP-layer errors) at a fraction of the cost of spinning up a real database per test run. A containerized integration test covering the full dispatch flow end-to-end is the logical next layer to add.
