@@ -15,7 +15,6 @@ import com.girdharshukla.deliverymatch.models.Agent.Status;
 import com.girdharshukla.deliverymatch.models.User;
 import com.girdharshukla.deliverymatch.models.UserPrincipal;
 import com.girdharshukla.deliverymatch.repositories.AgentRepository;
-import com.girdharshukla.deliverymatch.repositories.UserRepository;
 import com.uber.h3core.H3Core;
 
 @Service
@@ -23,15 +22,13 @@ public class AgentService {
 
     private final AgentRepository agentRepository;
     private final H3Core h3Core;
-    private final UserRepository userRepository;
 
     @Value("${h3.resolution}")
     int resolution;
 
-    public AgentService(AgentRepository agentRepository, H3Core h3Core, UserRepository userRepository) {
+    public AgentService(AgentRepository agentRepository, H3Core h3Core) {
         this.agentRepository = agentRepository;
         this.h3Core = h3Core;
-        this.userRepository = userRepository;
     }
 
     public Agent saveAgent(AddAgentRequestDto agentDto) throws IOException {
