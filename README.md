@@ -74,11 +74,11 @@ All protected endpoints expect `Authorization: Bearer <token>`, using the token 
 
 Tests are layered by scope, from fastest/narrowest to broadest, and each layer intentionally checks something the others can't:
 
-| Layer | Example | What it verifies | What's faked |
-|---|---|---|---|
-| **Unit test** | `GreedyMatchingEngineTest` | Pure algorithm correctness (nearest-match, capacity limits) | Nothing — no Spring, no I/O |
-| **Mockito service test** | `AgentServiceTest` | Business rules (e.g. rejecting a duplicate agent registration) | `AgentRepository`, `H3Core`, and the Spring Security context, all mocked |
-| **`@WebMvcTest` (web slice)** | `AgentControllerTest` | HTTP routing, JSON (de)serialization, and status-code mapping (`200` vs `409`) | The service layer (`AgentService`), via `@MockitoBean`; security filters disabled for now |
+| Layer | Example | What it verifies |
+|---|---|---|
+| **Unit test** | `GreedyMatchingEngineTest` | Pure algorithm correctness (nearest-match, capacity limits) |
+| **Mockito service test** | `AgentServiceTest` | Business rules (e.g. rejecting a duplicate agent registration) |
+| **`@WebMvcTest` (web slice)** | `AgentControllerTest` | HTTP routing, JSON (de)serialization, and status-code mapping (`200` vs `409`) |
 
 Run all tests:
 
